@@ -11,7 +11,7 @@ urlpatterns = [
 # ONLY catch frontend routes — NOT static files
 urlpatterns += [
     re_path(
-        r'^(?!static/|api/|admin/).*$',
+        r'^(?!assets/|api/|admin/).*$',
         TemplateView.as_view(template_name='index.html'),
     ),
 ]
