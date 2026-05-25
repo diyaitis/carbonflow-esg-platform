@@ -365,10 +365,22 @@ class EmissionFactorViewSet(viewsets.ModelViewSet):
     queryset = EmissionFactor.objects.all().select_related('tenant')
     serializer_class = EmissionFactorSerializer
 
-    def get_queryset(self):
-        qs = super().get_queryset()
-        tenant_id = self.request.query_params.get('tenant_id')
-        if tenant_id:
-            qs = qs.filter(tenant_id=tenant_id)
-        return qs.order_by('key')
+    
+    @action(detail=True, methods=['post'])
+    def approve(self, request, pk=None):
+        row = self.get_object()
+        row.status = 'approved'
+        row.reviewed_by = request.data.get('reviewed_by', '')
+        row.reviewed_at = timezone.now()
+        row.save()
+        return Response(self.get_serializer(row).data)
+
+    @action(detail=True, methods=['post'])
+    def reject(self, request, pk=None):
+        row = self.get_object()
+        row.status = 'rejected'
+        row.reviewed_by = request.data.get('reviewed_by', '')
+        row.reviewed_at = timezone.now()
+        row.save()
+        return Response(self.get_serializer(row).data)
     
