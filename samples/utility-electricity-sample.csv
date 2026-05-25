@@ -1,0 +1,3 @@
+Account,Meter ID,Billing Start,Billing End,Total Usage (kWh),Rate
+A-101,98765,2026-04-01,2026-04-30,14250,0.12
+A-101,98765,2026-05-01,2026-05-31,13100,0.13

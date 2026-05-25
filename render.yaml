@@ -1,0 +1,21 @@
+version: "1"
+projects:
+  - name: carbonflow-esg-platform
+    environments:
+      - name: production
+        services:
+          - type: web
+            name: carbonflow-esg-platform
+            runtime: docker
+            repo: https://github.com/diyaitis/carbonflow-esg-platform
+            branch: main
+            dockerfilePath: ./Dockerfile
+            plan: free
+            autoDeploy: true
+            envVars:
+              - key: DJANGO_DEBUG
+                value: "0"
+              - key: DJANGO_SECRET_KEY
+                sync: false
+              - key: DATABASE_URL
+                sync: false

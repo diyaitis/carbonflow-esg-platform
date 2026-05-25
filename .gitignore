@@ -1,0 +1,13 @@
+*.pyc
+__pycache__/
+db.sqlite3
+*.sqlite3
+*.log
+*.env
+node_modules/
+dist/
+.vscode/
+.DS_Store
+frontend/dist/
+backend/__pycache__/
+backend/*.pyc
